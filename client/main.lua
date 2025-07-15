@@ -12,12 +12,10 @@ end)
 local syncedHour = 0
 local syncedMinute = 0
 
--- Écoute de l'événement de spawn du joueur pour envoyer une requête de synchronisation depuis le client au serveur
 AddEventHandler('playerSpawned', function()
     TriggerServerEvent('vSync:requestSync')
 end)
 
--- Écoute de l'événement de synchronisation de l'heure envoyé depuis le serveur
 RegisterNetEvent('vSync:syncTime')
 AddEventHandler('vSync:syncTime', function(hour, minute)
     syncedHour = hour
@@ -31,7 +29,6 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Écoute de l'événement de synchronisation de la météo envoyé depuis le serveur
 RegisterNetEvent('vSync:syncWeather')
 AddEventHandler('vSync:syncWeather', function(weatherType)
     ClearOverrideWeather()

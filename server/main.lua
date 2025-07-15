@@ -9,7 +9,7 @@ end
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(5000) -- Met à jour toutes les 5 secondes
+        Citizen.Wait(5000)
         if not freezeTime then
             currentMinute = currentMinute + 1
             if currentMinute >= 60 then
@@ -35,7 +35,7 @@ RegisterNetEvent('vSync:requestSync', function()
     TriggerClientEvent('vSync:syncWeather', _src, currentWeatherType)
 end)
 
--- Commande pour changer l'heure
+-- Command to change the time
 RegisterCommand('time', function(source, args)
     if not args[1] then return end
     currentHour = tonumber(args[1]) or currentHour
@@ -43,14 +43,14 @@ RegisterCommand('time', function(source, args)
     TriggerClientEvent('vSync:syncTime', -1, currentHour, currentMinute)
 end, false)
 
--- Commande pour changer la météo
+-- Command to change the weather
 RegisterCommand('weather', function(source, args)
     if not args[1] then return end
     currentWeatherType = args[1]
     TriggerClientEvent('vSync:syncWeather', -1, currentWeatherType)
 end, false)
 
--- Commande pour geler ou dégeler le temps
+-- Command to freeze or unfreeze time
 RegisterCommand('freezeTime', function(source, args)
     freezeTime = not freezeTime
 end, false)
