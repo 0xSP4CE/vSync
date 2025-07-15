@@ -1,9 +1,9 @@
 fx_version 'cerulean'
-games { 'gta5' }
+games {'gta5'}
 
-author '0xMich'
-description 'Example resource'
-version '0.0.1'
+author '0xSPACE'
+description 'vSync - Synchronize Time and Weather'
+version '1.0.1'
 
 shared_scripts {
     'shared/config.lua',
