@@ -1,5 +1,6 @@
 local currentHour, currentMinute = math.random(0, 23), math.random(0, 59)
 local currentWeatherType = Config.AvailableWeatherTypes[math.random(1, #Config.AvailableWeatherTypes)]
+
 local freezeTime = Config.FreezeTime
 
 local function syncAllPlayers()
@@ -41,16 +42,16 @@ RegisterCommand('time', function(source, args)
     currentHour = tonumber(args[1]) or currentHour
     currentMinute = tonumber(args[2]) or 0
     TriggerClientEvent('vSync:syncTime', -1, currentHour, currentMinute)
-end, false)
+end, true)
 
 -- Command to change the weather
 RegisterCommand('weather', function(source, args)
     if not args[1] then return end
     currentWeatherType = args[1]
     TriggerClientEvent('vSync:syncWeather', -1, currentWeatherType)
-end, false)
+end, true)
 
 -- Command to freeze or unfreeze time
 RegisterCommand('freezeTime', function(source, args)
     freezeTime = not freezeTime
-end, false)
+end, true)
